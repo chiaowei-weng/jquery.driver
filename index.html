@@ -9,32 +9,35 @@
 </head>
 
 <body>
-    <div class="page">
-        <div class="row">
+    <div class="row">
+        <div class="table">
 
         </div>
-
     </div>
+
 
 </body>
 <script type="text/javascript">
     var options = {
+        el : '.row',
         data: { // 首先執行,並放入 this.data 裡
             'users': {
                 type: 'ajax',
                 returnType: 'array',
                 config: {
-                    params: ['data/user.json','get',{limit:100}]
+                    params: ['data/users.json', 'get', {
+                        limit: 100
+                    }]
                 },
-                columns: ['id', 'name', 'user_group_id'],
+                columns: ['test','id', 'name', 'user_group_id'],
                 merge: {
                     target: 'this.data.user_group',
                     key: 'user_group_id'
                 },
                 transpose: false
             },
-            'lang': ['tw','en'],
-            'method':'list',
+            'lang': ['tw', 'en'],
+            'method': 'list',
             'key': 'value'
         },
         columns: { // 靜態規範
@@ -59,13 +62,13 @@
         },
         threads: { // 排程
             'initDrawTable': { // key 單純描述執行內容, value 是執行的設定
-                before: {// 不會帶入 settings
-                    'runCond':['this.data.method', '=', 'list']
+                before: { // 不會帶入 settings
+                    'runCond': ['this.data.method', '=', 'list']
                 },
                 runFunc: { //會帶入 settings
-                    //'drawTable': ['this.data.users']
+                    'drawTable': ['.table', 'this.data.users']
                 },
-                settings:{
+                settings: {
                     been_standard: true, // 被columns格式化
                 },
                 apply: [{
@@ -77,8 +80,8 @@
         }
     };
     // 有個問題, driver 會存在 window 裏, 同 key 的話會被覆蓋
-    drivers = $('.row').driver(options);
-    console.log(driver);
+    drivers = new Driver(options);
+    console.log(drivers);
 </script>
 
 </html>

@@ -1,0 +1,33 @@
+{
+  "extends": "standard",
+  "env": {
+    "es6": true,
+    "node": true,
+    "browser": true,
+    "jquery":true
+  },
+  "plugins": [
+    "import",
+    "standard"
+  ],
+  "rules":{
+    "indent":[2,4],
+    "no-new-object":0,
+    "prefer-const": 0,
+    "valid-typeof":0,
+    "no-redeclare": 0,
+    "eqeqeq": 0,
+    "camelcase":0,
+    "space-before-function-paren": ["error", "never"],
+    "arrow-parens": 0,
+    "generator-star-spacing": 0,
+    "no-undef": 0,
+    "no-unused-vars": [1, {
+      "vars": "local",
+      "args": "none"
+    }],
+    "semi": ["error","always"],
+    "no-multiple-empty-lines": [0, {"max": 100}],
+    "no-mixed-spaces-and-tabs": [0]
+  }
+}
