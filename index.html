@@ -1,25 +1,25 @@
-<!DOCTYPE html>
 <html>
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Driver</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css" />
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="driver.js"></script>
 </head>
 
-<body>
-    <div class="row">
+<body class="clearfix">
+    <div class="container">
         <div class="table">
 
         </div>
     </div>
-
-
 </body>
+
 <script type="text/javascript">
     var options = {
-        el : '.row',
+        'el':'.row',
         data: { // 首先執行,並放入 this.data 裡
             'users': {
                 type: 'ajax',
@@ -29,7 +29,7 @@
                         limit: 100
                     }]
                 },
-                columns: ['test','id', 'name', 'user_group_id'],
+                fields: ['id', 'name', 'user_group_id'],
                 merge: {
                     target: 'this.data.user_group',
                     key: 'user_group_id'
@@ -40,15 +40,13 @@
             'method': 'list',
             'key': 'value'
         },
-        columns: { // 靜態規範
+        columns: { // 靜態規範,使用直接Configs.columns
             'id': {
-                'title': 'this.data.lang',
+                'title': '編號',
                 'type': 'integer',
-                'htmlTag': {
-                    'new': 'this.draw.label',
-                    'edit': 'this.draw.input',
-                    'list': 'this.drawTable'
-                },
+                'new': 'this.drawLabel',
+                'edit': 'this.drawInput',
+                'list': 'this.drawLabel',
                 'config': {
                     'new': {},
                     'edit': {}
@@ -58,7 +56,9 @@
                 'title': '姓名',
                 'type': 'string'
             },
-            'status': {}
+            'status': {
+                'title': 'this.data.lang',
+            }
         },
         threads: { // 排程
             'initDrawTable': { // key 單純描述執行內容, value 是執行的設定
